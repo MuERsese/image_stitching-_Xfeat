@@ -1,4 +1,4 @@
-## XFeat: Accelerated Features for Lightweight Image Matching
+<!-- ## XFeat: Accelerated Features for Lightweight Image Matching
 [Guilherme Potje](https://guipotje.github.io/) · [Felipe Cadar](https://eucadar.com/) · [Andre Araujo](https://andrefaraujo.github.io/) · [Renato Martins](https://renatojmsdh.github.io/) · [Erickson R. Nascimento](https://homepages.dcc.ufmg.br/~erickson/)
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
@@ -241,4 +241,4 @@ If you find this code useful for your research, please cite the paper:
 <br>
 <img align="left" width="auto" height="50" src="./figs/ufmg.png">
 <img align="right" width="auto" height="50" src="./figs/verlab.png">
-<br/>
+<br/> -->
