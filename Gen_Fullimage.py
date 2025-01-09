@@ -14,7 +14,7 @@ def Gen_Fullimage(camid):
 
 
     #cap=cv2.VideoCapture(camid)
-    cap=cv2.VideoCapture('output.mp4')
+    cap=cv2.VideoCapture('../../test_video_1080P.mp4')
     if not cap.isOpened():
         print("Error: can't open camera")
         return None,None,0
@@ -22,7 +22,7 @@ def Gen_Fullimage(camid):
 
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT,1080)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH,1920)
-    time.sleep(1);
+    
     fps = cap.get(cv2.CAP_PROP_FPS)
     delay = int(1000 / fps)  
     image_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -33,7 +33,7 @@ def Gen_Fullimage(camid):
     if not ret:
         print('Error: output initialization failed')
         return None,None,0
-    img1=cv2.undistort(frame,cameraMatrix,distCoeffs)[image_height//2-500:image_height//2+500,image_width//2-800:image_width//2+800]
+    img1=cv2.undistort(frame,cameraMatrix,distCoeffs)[10:,20:]
 
     
    
@@ -55,7 +55,7 @@ def Gen_Fullimage(camid):
         key=cv2.waitKey(delay)
         if(key & 0xFF==ord('s')):
             #undistorted_img2=cv2.undistort(current,cameraMatrix,distCoeffs)[10:,20:]
-            undistorted_img2=cv2.undistort(current,cameraMatrix,distCoeffs)[image_height//2-500:image_height//2+500,image_width//2-800:image_width//2+800]
+            undistorted_img2=cv2.undistort(current,cameraMatrix,distCoeffs)[10:,20:]
             H=calculate.cal_homography(img1,undistorted_img2)
             keyframe.append(undistorted_img2)
             homography.append(H)
