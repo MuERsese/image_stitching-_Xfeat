@@ -39,7 +39,7 @@ class stitching:
             xmin_output=-xmin_output
         if(ymin_output<0):
             ymin_output=-ymin_output
-        coor_homo=np.array([[1,0,xmin_output],[0,1,ymin_output],[0,0,1]],dtype=np.uint8)
+        coor_homo=np.array([[1,0,xmin_output],[0,1,ymin_output],[0,0,1]],dtype=np.uint32)
 
     
         

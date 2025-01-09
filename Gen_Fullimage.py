@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import cal_homography
 import stitching
-
+import time
 
 def Gen_Fullimage(camid):
 
@@ -20,16 +20,20 @@ def Gen_Fullimage(camid):
         return None,None,0
     
 
-
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT,1080)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH,1920)
+    time.sleep(1);
     fps = cap.get(cv2.CAP_PROP_FPS)
     delay = int(1000 / fps)  
+    image_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    image_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     
     #initialize to have the first frame
     ret,frame=cap.read()
     if not ret:
         print('Error: output initialization failed')
         return None,None,0
-    img1=cv2.undistort(frame,cameraMatrix,distCoeffs)[10:,20:]
+    img1=cv2.undistort(frame,cameraMatrix,distCoeffs)[image_height//2-500:image_height//2+500,image_width//2-800:image_width//2+800]
 
     
    
@@ -50,13 +54,14 @@ def Gen_Fullimage(camid):
             return None,None,0
         key=cv2.waitKey(delay)
         if(key & 0xFF==ord('s')):
-            undistorted_img2=cv2.undistort(current,cameraMatrix,distCoeffs)[10:,20:]
+            #undistorted_img2=cv2.undistort(current,cameraMatrix,distCoeffs)[10:,20:]
+            undistorted_img2=cv2.undistort(current,cameraMatrix,distCoeffs)[image_height//2-500:image_height//2+500,image_width//2-800:image_width//2+800]
             H=calculate.cal_homography(img1,undistorted_img2)
             keyframe.append(undistorted_img2)
             homography.append(H)
-            img1=undistorted_img2
+            img1=undistorted_img2.copy()
             n+=1
-            print("keyframe added successfully")
+            print("keyframe added successfully",current.shape[0],"x",current.shape[1])
         
         elif (key & 0xFF==ord('q')):
             break
@@ -88,6 +93,7 @@ if __name__=='__main__':
         
     #cv2.namedWindow('output',cv2.WINDOW_NORMAL)
     cv2.imshow('output',output)
+    cv2.imwrite('./Test_images/output.png',output)
     while True:
         if (cv2.waitKey(1) & 0xFF==ord('l')):
             break
