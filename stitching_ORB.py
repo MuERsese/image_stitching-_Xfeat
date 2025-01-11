@@ -38,7 +38,7 @@ def stitching(img1,img2):
     #calculate the homography matrix
     img1_pts=np.float32([kpts1[m.queryIdx].pt for m in good_matches]).reshape(-1,1,2)
     img2_pts=np.float32([kpts2[m.trainIdx].pt for m in good_matches]).reshape(-1,1,2)
-    H,mask=cv2.findHomography(img2_pts,img1_pts,cv2.RANSAC)
+    H,_=cv2.findHomography(img2_pts,img1_pts,cv2.RANSAC)
 
     #get the projection of img2 to img1
     

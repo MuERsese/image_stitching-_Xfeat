@@ -9,8 +9,7 @@ class cal_homography:
         pass
     def cal_homography(self,img1,img2):
         
-        #img1=img1[10:,20:]
-        #img2=img2[10:,20:]
+        
         h1,w1,_=img1.shape
         h2,w2,_=img2.shape
         
@@ -37,8 +36,9 @@ class cal_homography:
 
         #calculate homography matrix
         H, inliers = cv2.findHomography(points2, points1, cv2.USAC_MAGSAC,maxIters=700, confidence=0.995)
+       
         
-        return H
+        return H.astype(np.float32)
 
         
 
