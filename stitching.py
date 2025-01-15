@@ -50,7 +50,7 @@ class stitching:
             #we need to decide dsize(the w and h of the output frame)
             #we need to recalculate all corners,because the homography changed
             
-            corners_cur=cv2.perspectiveTransform(corners,coor_homo.dot(homography[k]))
+            
             
             
             # [xmin,ymin]=np.int32(corners_cur.min(axis=0).ravel())
@@ -61,7 +61,7 @@ class stitching:
              # Create masks for blending
            
 
-            # Blend using masks
+            # Blend using masks,full opacity
             mask = cv2.warpPerspective(np.ones((h, w), dtype=np.float32), homography[k], dsize)
 
             # Blend the current image with the existing canvas
@@ -72,13 +72,9 @@ class stitching:
 
         # Normalize the output by the weight map to handle overlaps
         weight_map[weight_map == 0] = 1  # Avoid division by zero
-        output = (output / weight_map[:, :, None]).astype(np.uint8)  
-
-            #stitch the image to the output
-            # output[0:ymax-ymin,0:xmax-xmin]=key_frame_homo_
-            
-            
+        output = (output / weight_map[:, :, None]).astype(np.uint8)
         
+
         return output
 
         
