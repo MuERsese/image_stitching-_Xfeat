@@ -23,7 +23,7 @@ class frame_grabber:
         recovered_image=np.fft.ifft2(fft_shift)
         magnitude_spectrum=20*np.log(np.abs(recovered_image))
         mean=np.mean(magnitude_spectrum)
-        print("mean of magnitude spectrum is", mean)
+        # print("mean of magnitude spectrum is", mean)
         result=thresh<=mean
         return result
         

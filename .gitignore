@@ -200,8 +200,7 @@ figs/fig_not_blurred6.jpg
 figs/fig_not_blurred7.jpg
 
 possible_future_direction
-frame_grab.py
-Test_images/output.png
-frame_grab.py
-Test_images/output.png
 
+
+frame_grab.py
+ourput_file/output.png
