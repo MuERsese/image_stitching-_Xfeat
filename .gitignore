@@ -158,11 +158,8 @@ dmypy.json
 cython_debug/
 
 
+
 #uncessary files
-.minimal_example.py
-.stitching_ORB.py
-.test.py
-.realtime_demo.py
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
@@ -170,3 +167,39 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+figs/fig_blurred.jpg
+figs/fig_blurred2.jpg
+figs/fig_blurred3.jpg
+figs/fig_blurred4.jpg
+figs/fig_blurred5.jpg
+figs/fig_blurred6.jpg
+figs/fig_blurred7.jpg
+figs/fig_blurred8.jpg
+figs/fig_blurred9.jpg
+figs/fig_blurred10.jpg
+figs/fig_blurred11.jpg
+figs/fig_blurred12.jpg
+figs/fig_blurred13.jpg
+figs/fig_blurred14.jpg
+figs/fig_blurred15.jpg
+figs/fig_blurred16.jpg
+figs/fig_blurred17.jpg
+figs/fig_blurred18.jpg
+figs/fig_blurred19.jpg
+figs/fig_blurred20.jpg
+figs/fig_blurred21.jpg
+figs/fig_blurred22.jpg
+figs/fig_blurred23.jpg
+figs/fig_not_blurred0.jpg
+figs/fig_not_blurred1.jpg
+figs/fig_not_blurred2.jpg
+figs/fig_not_blurred3.jpg
+figs/fig_not_blurred4.jpg
+figs/fig_not_blurred5.jpg
+figs/fig_not_blurred6.jpg
+figs/fig_not_blurred7.jpg
+
+possible_future_direction
+frame_grab.py
+Test_images/output.png
+

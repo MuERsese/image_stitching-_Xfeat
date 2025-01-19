@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import cal_homography
 import stitching
-import time
+from cal_laplacian_var import cal_laplacian_var
 
 def Gen_Fullimage(camid):
 
@@ -10,6 +10,8 @@ def Gen_Fullimage(camid):
     distCoeffs=(0.0824,-0.0211,-0.0011,-1.0369e-04,-0.2171)
     calculate=cal_homography.cal_homography()
     
+    kpts_thresh=200
+    laplacian_thresh=150
 
 
 
@@ -32,6 +34,9 @@ def Gen_Fullimage(camid):
         return None,None,0
     img1=cv2.undistort(frame,cameraMatrix,distCoeffs)
     
+    
+
+    
 
     
    
@@ -42,7 +47,8 @@ def Gen_Fullimage(camid):
     H11=np.array([[1,0,0],[0,1,0],[0,0,1]]).astype(np.float32)
     keyframe.append(img1)
     homography.append(H11)
-
+    num_kpts=kpts_thresh
+    laplacian_var=laplacian_thresh
     
     while True:
         ret,current=cap.read()
@@ -50,19 +56,26 @@ def Gen_Fullimage(camid):
         if not ret:
             print("Error: can't get frame")
             return None,None,0
+        
+        
+        undistorted_img2=cv2.undistort(current,cameraMatrix,distCoeffs)
+        H,num_kpts=calculate.cal_homography(img1,undistorted_img2)
+        laplacian_var=cal_laplacian_var(undistorted_img2)
+        
         key=cv2.waitKey(delay)
-        if(key & 0xFF==ord('s')):
-            
-            undistorted_img2=cv2.undistort(current,cameraMatrix,distCoeffs)
-            H=calculate.cal_homography(img1,undistorted_img2)
+        #if the image have less keypoints and clearer than threshold
+        if(num_kpts<kpts_thresh and laplacian_var>laplacian_thresh):
             keyframe.append(undistorted_img2)
             homography.append(H)
             img1=undistorted_img2.copy()
             n+=1
-            print("keyframe added successfully",undistorted_img2.shape[0],"x",undistorted_img2.shape[1])
+            print("keyframe{} added successfully".format(n),undistorted_img2.shape[0],"x",undistorted_img2.shape[1])
         
-        elif (key & 0xFF==ord('q')):
+        if (key & 0xFF==ord('q')):
             break
+        
+        
+        
         # cv2.namedWindow('current',cv2.WINDOW_NORMAL)
         cv2.imshow('current',current)
         # cv2.imshow('output',output_frame)

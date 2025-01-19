@@ -31,14 +31,15 @@ class cal_homography:
         
         #idx0,idx1 are the indices of the matched points
         idx0, idx1 = xfeat.match(descs1, descs2, 0.82)
+        
         points1 = kpts1[idx0].numpy()
         points2 = kpts2[idx1].numpy()
 
         #calculate homography matrix
         H, inliers = cv2.findHomography(points2, points1, cv2.USAC_MAGSAC,maxIters=700, confidence=0.995)
-       
+        print("number of matching points",len(idx0))
         
-        return H.astype(np.float32)
+        return H.astype(np.float32), len(idx0)
 
         
 

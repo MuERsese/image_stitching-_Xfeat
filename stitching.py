@@ -68,7 +68,7 @@ class stitching:
             output = output + key_frame_homo_ * mask[:, :, None]  # Add weighted image
             weight_map += mask  # Accumulate weights
 
-            print(f"Frame {k} added successfully, size: {key_frame_homo_.shape}")
+            print(f"Frame {k} added successfully")
 
         # Normalize the output by the weight map to handle overlaps
         weight_map[weight_map == 0] = 1  # Avoid division by zero
