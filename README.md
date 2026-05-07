@@ -2,7 +2,7 @@
 This algorithm demo is developed based on this repo: https://github.com/verlab/accelerated_features, which can do the panoramic photo generation. It contains following functions:
 
 
-1.Stero Camera Calibration (developing)
+1.Stero Camera Calibration 
 
 2.Feature points detection adn description
 
@@ -12,7 +12,7 @@ This algorithm demo is developed based on this repo: https://github.com/verlab/a
 
 5.Image stitching
 
-6.Image post-processing(developing)
+6.Image post-processing
 
 Feel free to ask me if you have any question and welcome to give me any comments.
 
